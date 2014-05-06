@@ -64,7 +64,7 @@ module Watchman
     files = get_pruned_files
     diffs = get_diffs(files)
     schedule = get_update_schedule(diffs, files)
-    fire_update(schedule, files)
+    fire_updates(schedule, files)
   end
 
 end
