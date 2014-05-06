@@ -7,15 +7,9 @@ module Watchman
     schedule.each_with_index do |s, i|
       case s
       when -1
-<<<<<<< HEAD
         update_repo(files[i])
       when 1
         update_root(files[i])
-=======
-        update_root(files[i])
-      when 1
-        update_repo(files[i])
->>>>>>> 8fd5a06cbf87faebb6a836619899179d5a2d5624
       end
     end
   end
@@ -35,7 +29,6 @@ module Watchman
     prune(get_files)
   end
 
-<<<<<<< HEAD
   def get_update_schedule(diffs, files)
     schedule = Array.new(4, nil)
 
@@ -48,16 +41,6 @@ module Watchman
       schedule[i] = comparator
     end
     schedule
-=======
-  def get_update_schedule(diffs)
-    diffs.map do |diff|
-      if !diff
-        File.ctime(relpath + file) <=> File.ctime(file)
-      else
-        0
-      end
-    end
->>>>>>> 8fd5a06cbf87faebb6a836619899179d5a2d5624
   end
 
   def prune(files)
@@ -80,11 +63,7 @@ module Watchman
     Dir.chdir
     files = get_pruned_files
     diffs = get_diffs(files)
-<<<<<<< HEAD
     schedule = get_update_schedule(diffs, files)
-=======
-    schedule = get_update_schedule(diffs)
->>>>>>> 8fd5a06cbf87faebb6a836619899179d5a2d5624
     fire_update(schedule, files)
   end
 
