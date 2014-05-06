@@ -12,6 +12,7 @@ module Watchman
         update_root(files[i])
       end
     end
+    nil
   end
 
   def get_diffs(files)
@@ -43,6 +44,10 @@ module Watchman
     schedule
   end
 
+  def home
+    Dir.home + "/"
+  end
+
   def prune(files)
     files[2..-1].reject { |file| file.match(".git*") }
   end
@@ -52,11 +57,11 @@ module Watchman
   end
 
   def update_root(file)
-    cp(relpath + file, Dir.home)
+    cp(relpath + file, home)
   end
 
   def update_repo(file)
-    cp(file, Dir.home + relpath)
+    cp(file, home + relpath)
   end
 
   def update
